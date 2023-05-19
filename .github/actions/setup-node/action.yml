@@ -1,0 +1,15 @@
+name: 'Setup Node.js environment'
+description: |
+  Setup the right version of Node.js, install project dependencies and cache 
+  those.
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-node@v3
+      with:
+        node-version-file: .nvmrc
+        cache: yarn
+
+    - run: yarn --immutable
+      shell: bash

@@ -1,0 +1,23 @@
+name: CI - CD
+
+on:
+    push
+
+jobs:
+    lint:
+        uses: ./.github/workflows/run-turbo-task.yml
+        with:
+            task: lint
+
+    test:
+        uses: ./.github/workflows/run-turbo-task.yml
+        with:
+            task: test
+
+    deploy:
+        needs:
+            - lint
+            - test
+        uses: ./.github/workflows/run-turbo-task.yml
+        with:
+            task: deploy

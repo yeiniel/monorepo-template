@@ -1,0 +1,30 @@
+{
+  "name": "@yeiniel/monorepo-template",
+  "packageManager": "yarn@3.5.1",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "deploy": "turbo run deploy",
+    "lint": "turbo run lint",
+    "postinstall": "is-ci || husky install",
+    "test": "turbo run test"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
+    "@commitlint/cz-commitlint": "^17.5.0",
+    "commitizen": "^4.3.0",
+    "husky": "^8.0.3",
+    "inquirer": "^8",
+    "is-ci": "^3.0.1",
+    "turbo": "^1.9.8"
+  }
+}

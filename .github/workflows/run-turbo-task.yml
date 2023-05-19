@@ -1,0 +1,42 @@
+name: Run Turborepo Task
+
+on:
+  workflow_call:
+    inputs:
+      task:
+        required: true
+        type: string
+        description: Turborepo Task to run
+
+jobs:
+  list-packages:
+    runs-on: ubuntu-latest
+    outputs:
+        packages: ${{ steps.command.outputs.packages }}
+    steps: 
+        - uses: actions/checkout@v3
+          with:
+            lfs: 'true'
+        
+        - uses: ./.github/actions/setup-node
+
+        - id: command
+          run: echo "packages=$( yarn turbo run ${{ inputs.task }} --dry=json | jq '.tasks | .[] | if .command != "\u003cNONEXISTENT\u003e" and .task == "${{ inputs.task }}" then .package else empty end' | jq -s -c -r '@json' )" >> $GITHUB_OUTPUT 
+
+  run-task:
+      name: ${{ inputs.task }} ${{ matrix.package }}
+      needs:
+          - list-packages
+      if: ${{ needs.list-packages.outputs.packages != '[]' && needs.list-packages.outputs.packages != '' }}
+      strategy:
+          matrix:
+              package: ${{ fromJson(needs.list-packages.outputs.packages) }}
+      runs-on: ubuntu-latest
+      steps:
+          - uses: actions/checkout@v3
+            with:
+              lfs: 'true'
+          
+          - uses: ./.github/actions/setup-node
+
+          - run: yarn turbo run ${{ inputs.task }} --filter=${{ matrix.package }}
