@@ -1,26 +1,24 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": [
-    "package.json"
-  ],
+  "globalDependencies": ["package.json"],
   "pipeline": {
     "build": {
-        "dependsOn": ["^build"],
-        "inputs": ["src/**"],
-        "outputs": ["dist/**", ".serverless/**"]
+      "dependsOn": ["^build"],
+      "inputs": ["src/**"],
+      "outputs": ["dist/**", ".serverless/**"]
     },
     "lint": {
-        "inputs": ["src/**"]
+      "inputs": ["src/**"]
     },
     "test": {
-        "outputs": ["coverage/**"],
-        "dependsOn": ["build"],
-        "inputs": ["src/**", "test/**"],
-        "outputMode": "full"
+      "outputs": ["coverage/**"],
+      "dependsOn": ["build"],
+      "inputs": ["src/**", "test/**"],
+      "outputMode": "full"
     },
     "deploy": {
-        "dependsOn": ["build"],
-        "cache": false
+      "dependsOn": ["build"],
+      "cache": false
     }
   }
 }
