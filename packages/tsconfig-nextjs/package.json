@@ -1,0 +1,16 @@
+{
+  "name": "@yeiniel/tsconfig-nextjs",
+  "private": true,
+  "type": "module",
+  "main": "src/tsconfig.json",
+  "scripts": {
+    "lint": "ESLINT_USE_FLAT_CONFIG=true eslint -c eslint.config.mjs ."
+  },
+  "devDependencies": {
+    "@yeiniel/eslint-config": "workspace:*",
+    "eslint": "*"
+  },
+  "dependencies": {
+    "@tsconfig/next": "*"
+  }
+}

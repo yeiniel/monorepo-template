@@ -1,0 +1,29 @@
+{
+  "name": "@yeiniel/todos-ui",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@types/node": "*",
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "@yeiniel/tsconfig-nextjs": "workspace:*",
+    "autoprefixer": "*",
+    "eslint": "*",
+    "eslint-config-next": "*",
+    "next": "*",
+    "postcss": "*",
+    "react": "*",
+    "react-dom": "*",
+    "tailwindcss": "*",
+    "typescript": "*"
+  },
+  "devDependencies": {
+    "@types/eslint": "*"
+  }
+}

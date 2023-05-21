@@ -1,8 +1,8 @@
 {
-  "name": "@yeiniel/tsconfig",
+  "name": "@yeiniel/tsconfig-nodejs",
   "private": true,
   "type": "module",
-  "main": "src/index.json",
+  "main": "src/tsconfig.json",
   "scripts": {
     "lint": "ESLINT_USE_FLAT_CONFIG=true eslint -c eslint.config.mjs ."
   },
